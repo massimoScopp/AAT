@@ -14,3 +14,5 @@ android:
 
  before_install:
  - chmod +x gradlew
+ 
+ script: mvn clean findbugs:findbugs install 
