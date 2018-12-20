@@ -6,13 +6,10 @@ android {
 
     defaultConfig {
         applicationId "ch.bailu.aat"
-
         minSdkVersion 14
         targetSdkVersion 28
-
         versionCode 25
         versionName "v1.14.1"
-
         resValue "string", "app_sname", "AAT"
     }
 
@@ -24,10 +21,8 @@ android {
         effort = "max"
         excludeFilter = file("${project.rootDir}/app/build/config/findbugs-android-exclude.xml")
         includeFilter = file("${project.rootDir}/findbugs-include")
-
         ignoreFailures = true
         //con false la build failed con true non failed anche se ci sono warnings
-
         reportLevel = "low"
         source = fileTree('src/main/java/')
 
@@ -41,6 +36,8 @@ android {
                 destination "build/reports/findbugs/findbugs-output.html"
             }
         }
+
+        preBuild.dependsOn('findbugs')
     }
 
     buildTypes {
