@@ -76,7 +76,7 @@ task findbugs(type: FindBugs) {
 
     reportLevel = "low"
     // excludeFilter = new File("${project.rootDir}/app/config/findbugs/rulesFindBugs.xml")
-    classes = files("${project.rootDir}/app/build")
+    classes = files("${project.rootDir}/app")
 
     source 'src'
     include '**/*.java'
