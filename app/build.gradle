@@ -25,7 +25,6 @@ android {
         excludeFilter = file("C:/Users/Antonella/Desktop/AAT/app/build/config/findbugs-android-exclude.xml")
         includeFilter = file("C:/Users/Antonella/Desktop/AAT/findbugs-include")
 
-
         ignoreFailures = true
         //con false la build failed con true non failed anche se ci sono warnings
 
