@@ -2,6 +2,9 @@ apply plugin: 'com.android.application'
 apply plugin: 'checkstyle'
 apply plugin: 'findbugs'
 
+
+check.dependsOn('checkstyle','findbugs','lint')
+
 android {
     compileSdkVersion 28
 
@@ -37,7 +40,7 @@ android {
     }
 
     lintOptions {
-        abortOnError true
+        abortOnError false
         lintConfig file("${project.rootDir}/app/config/lint/lintconf.xml")
         htmlReport true
         htmlOutput file("$project.buildDir/reports/lint/lint.html")
@@ -46,7 +49,7 @@ android {
 //Inserimento task per checkstyle
 task checkstyle(type: Checkstyle) {
 
-    configFile = rootProject.file('app/config/checkstyle/checkstyleEsteso.xml')
+    configFile = rootProject.file('app/config/checkstyle/checkstyle.xml')
     source 'src'
     ignoreFailures = true
     include '**/*.java'
@@ -75,8 +78,8 @@ task findbugs(type: FindBugs) {
     effort = "max"
 
     reportLevel = "low"
-    // excludeFilter = new File("${project.rootDir}/app/config/findbugs/rulesFindBugs.xml")
-    classes = files("${project.rootDir}/app")
+    excludeFilter = new File("${project.rootDir}/app/config/findbugs/rulesFindBugs.xml")
+    classes = files("${project.rootDir}/app/build")
 
     source 'src'
     include '**/*.java'
