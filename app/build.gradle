@@ -15,7 +15,11 @@ android {
 
     task findbugs(type: FindBugs) {
 
-        classes = files("${project.rootDir}")
+      classes = files("${project.rootDir}/app")
+        //build/intermediates/classes/
+                //files("${project.rootDir/app}")
+
+
         classpath = files()
         //classpath = files('C:/Users/Antonella/Downloads/FindBugs-IDEA-1.0.1.zip')
         effort = "max"
