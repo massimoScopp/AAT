@@ -65,7 +65,7 @@ task checkstyle(type: Checkstyle) {
     }
     //inserimento prebuild per far in modo che l'esecuzione del
     // task avvenga per ogni build
-    // preBuild.dependsOn('checkstyle')
+     preBuild.dependsOn('checkstyle')
 }
 //fine del task--> checkstyle
 //Inserimento secondo task per findbugs
