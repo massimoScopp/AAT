@@ -19,7 +19,7 @@ android {
         classpath = files()
         //classpath = files('C:/Users/Antonella/Downloads/FindBugs-IDEA-1.0.1.zip')
         effort = "max"
-        excludeFilter = file("${project.rootDir}/app/build/config/findbugs-android-exclude.xml")
+        excludeFilter = file("${project.rootDir}/findbugs-android-exclude.xml")
         includeFilter = file("${project.rootDir}/findbugs-include")
         ignoreFailures = true
         //con false la build failed con true non failed anche se ci sono warnings
