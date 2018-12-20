@@ -46,9 +46,9 @@ android {
 //Inserimento task per checkstyle
 task checkstyle(type: Checkstyle) {
 
-    //configFile = rootProject.file('app/config/checkstyle/checkstyleEsteso.xml')
+    configFile = rootProject.file('app/config/checkstyle/checkstyleEsteso.xml')
     source 'src'
-
+    ignoreFailures = true
     include '**/*.java'
     exclude '**/gen/**'
     exclude '**/R.java'
@@ -71,7 +71,7 @@ task checkstyle(type: Checkstyle) {
 //Inserimento secondo task per findbugs
 task findbugs(type: FindBugs) {
 
-    ignoreFailures = false
+    ignoreFailures = true
     effort = "max"
 
     reportLevel = "low"
