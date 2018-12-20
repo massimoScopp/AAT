@@ -100,7 +100,7 @@ task findbugs(type: FindBugs) {
 
     classpath = files()
 
-    preBuild.dependsOn('findbugs')
+
 }
 //Fine Findbugs task
 
