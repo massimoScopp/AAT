@@ -14,7 +14,7 @@
       <category name="STYLE" />
     </hiddenBugCategory>
     <excludeFilterFiles>
-      <filter file="$PROJECT_DIR$/app/build/config/findbugs-android-exclude.xml" enabled="true" />
+      <filter file="$PROJECT_DIR$/findbugs-android-exclude.xml" enabled="true" />
     </excludeFilterFiles>
     <detectors>
       <detector name="BadAppletConstructor" enabled="true" />
