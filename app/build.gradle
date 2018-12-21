@@ -41,7 +41,7 @@ android {
             }
         }
 
-        preBuild.dependsOn('findbugs')
+
     }
 
     buildTypes {
