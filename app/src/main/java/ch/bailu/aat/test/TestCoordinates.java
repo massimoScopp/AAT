@@ -56,16 +56,16 @@ public class TestCoordinates extends UnitTest {
         assertEquals(e, ch2.getEasting());
 
         /*
-        CH1903Coordinates ch4 = new CH1903Coordinates(Sexagesimal.toDecimalDegree(46, 2, 38.87f), 
+        CH1903Coordinates ch4 = new CH1903Coordinates(Sexagesimal.toDecimalDegree(46, 2, 38.87f),
                                                     Sexagesimal.toDecimalDegree(8,43, 49.79f));
         
         
         assertEquals(700000, ch4.getEasting());
         assertEquals(100000, ch4.getNorthing());
+
+        
+        GeoPoint p = ch4.toLatLongE6();
+        assertEquals((int)Math.round(Sexagesimal.toDecimalDegree(46, 2, 38.87f)*1e6d), p.getLatitudeE6());
         */
-        
-        //GeoPoint p = ch4.toLatLongE6();
-        //assertEquals((int)Math.round(Sexagesimal.toDecimalDegree(46, 2, 38.87f)*1e6d), p.getLatitudeE6());
-        
     }
 }
