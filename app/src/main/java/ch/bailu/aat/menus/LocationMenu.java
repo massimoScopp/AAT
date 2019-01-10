@@ -92,7 +92,6 @@ public class LocationMenu extends AbsMenu{
         clipboard.setText("GEO location", Coordinates.geoPointToGeoUri(getCenter()));
     }
 
-
     private void view() {
         final Intent intent = new Intent(Intent.ACTION_VIEW);
         final LatLong center = getCenter();
