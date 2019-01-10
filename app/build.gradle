@@ -1,5 +1,35 @@
 apply plugin: 'com.android.application'
 
+apply plugin: 'jacoco'
+
+
+buildscript {
+    repositories {
+        mavenCentral()
+        maven { url 'https://maven.fabric.io/public' }
+    }
+
+    dependencies {
+        classpath 'io.fabric.tools:gradle:1.25.4'
+
+    }
+}
+
+repositories {
+    mavenCentral()
+    jcenter()
+    maven {
+        url "https://oss.sonatype.org/content/repositories/snapshots"
+    }
+    maven { url 'https://maven.fabric.io/public' }
+    maven { url "https://jitpack.io" }
+    maven { url "https://github.com/alter-ego/Android-RSS-Reader-Library/raw/master/releases/" }
+    google()
+}
+
+
+
+
 android {
     compileSdkVersion 28
 
@@ -67,4 +97,22 @@ dependencies {
     // Local
     implementation project(path: ':util-java')
 
+
+
+    // TESTING
+    testCompileOnly(
+            'junit:junit:4.12'
+    )
+    testImplementation(
+            'org.junit.jupiter:junit-jupiter-api:5.1.0'
+    )
+    testRuntimeOnly(
+            'org.junit.jupiter:junit-jupiter-engine:5.1.0',
+            'org.junit.vintage:junit-vintage-engine:5.1.0'
+    )
 }
+
+
+
+
+
