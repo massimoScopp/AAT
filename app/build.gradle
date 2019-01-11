@@ -1,9 +1,9 @@
 apply plugin: 'com.android.application'
 apply plugin: 'checkstyle'
 apply plugin: 'findbugs'
+apply plugin: 'pl.droidsonroids.pitest'
 
-
-check.dependsOn('checkstyle','findbugs','lint')
+//check.dependsOn('checkstyle','findbugs','lint')
 
 android {
     compileSdkVersion 28
@@ -102,7 +102,9 @@ task findbugs(type: FindBugs) {
 
 
 }
-//Fine Findbugs task
+//per pitest
+
+//Fine Findbugs task*/
 
 dependencies {
     /*
@@ -132,4 +134,24 @@ dependencies {
     // Local
     implementation project(path: ':util-java')
 
+    // TESTING
+    testCompileOnly(
+            'junit:junit:4.12'
+    )
+    testImplementation(
+            'org.junit.jupiter:junit-jupiter-api:5.1.0'
+    )
+    testRuntimeOnly(
+            'org.junit.jupiter:junit-jupiter-engine:5.1.0',
+            'org.junit.vintage:junit-vintage-engine:5.1.0'
+    )
+}
+pitest {
+   targetClasses = ['ch.bailu.aat.*']
+    //targetClasses = ['ch.bailu.aat.coordinates']
+    threads = 5
+    outputFormats = ['HTML']
+    timeoutConstInMillis = 20000
+    // Necessary to allow Robolectric to finish. See http://pitest.org/faq/#im-seeing-a-lot-of-timeouts-whats-going-on
+    verbose = true
 }
