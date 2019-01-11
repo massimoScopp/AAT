@@ -181,9 +181,11 @@ dependencies {
     )
 }
 pitest {
-   targetClasses = ['ch.bailu.aat.*']
-    //targetClasses = ['ch.bailu.aat.coordinates']
-    threads = 5
+   //targetClasses = ['ch.bailu.aat.*']
+  targetClasses = ['ch.bailu.aat.*']
+    targetTests = ['ch.bailu.aat.*Test']
+
+
     outputFormats = ['HTML']
     timeoutConstInMillis = 20000
     // Necessary to allow Robolectric to finish. See http://pitest.org/faq/#im-seeing-a-lot-of-timeouts-whats-going-on

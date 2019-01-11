@@ -16,6 +16,7 @@ allprojects {
         google() // for com.android.tools.build:gradle'
         jcenter()
     }
+
 }
 task clean(type: Delete) {
     delete rootProject.buildDir
