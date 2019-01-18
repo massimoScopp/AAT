@@ -29,7 +29,7 @@ public class UTMCoordinatesTest {
         assertEquals((int) la * 1000, (int) (p.getLatitudeE6() / 1e6) * 1000);
         assertEquals((int) lo * 1000, (int) (p.getLongitudeE6() / 1e6) * 1000);
         assertNotNull(utm.toString(), "tostring non è nullo");
-      //  assertEquals("Z 32U, E 409,755, N 5319,687",utm.toString());
+      // assertEquals("Z 32U, E 409,755, N 5319,687",utm.toString());
 
 
         UTMCoordinates utm2 = new UTMCoordinates(-34.168281d, 18.424966d);
