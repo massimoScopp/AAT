@@ -15,7 +15,6 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
     }
-
     task findbugs(type: FindBugs) {
 
       classes = files("${project.rootDir}/app")
@@ -43,8 +42,6 @@ android {
                 destination "build/reports/findbugs/findbugs-output.html"
             }
         }
-
-        preBuild.dependsOn('findbugs')
     }
 
     buildTypes {
@@ -64,8 +61,7 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-
-    dependencies {
+dependencies {
         /*
         Automatic MapsForge integration as described here: 
         https://github.com/mapsforge/mapsforge/raw/master/docs/Integration.md
