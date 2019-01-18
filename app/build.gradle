@@ -1,13 +1,52 @@
 apply plugin: 'com.android.application'
 apply plugin: 'checkstyle'
 apply plugin: 'findbugs'
+apply plugin: 'pl.droidsonroids.pitest'
+
+//check.dependsOn('checkstyle','findbugs','lint')
+
+apply plugin: 'jacoco'
 
 
-check.dependsOn('checkstyle','findbugs','lint')
+buildscript {
+    repositories {
+        mavenCentral()
+        google()
+        // If you're using a version of Gradle lower than 4.1, you must instead use:
+        // maven {
+        //     url 'https://maven.google.com'
+        // }
+        // An alternative URL is 'https://dl.google.com/dl/android/maven2/'
+    }
+    dependencies {
+        classpath 'pl.droidsonroids.gradle:gradle-pitest-plugin:0.1.8'
+    }
+}
+
+apply plugin: 'com.android.application'
+//or apply plugin: 'com.android.library'
+//or apply plugin: 'com.android.test'
+
+apply plugin: 'pl.droidsonroids.pitest'
+
+
+repositories {
+    mavenCentral()
+    jcenter()
+    maven {
+        url "https://oss.sonatype.org/content/repositories/snapshots"
+    }
+    maven { url 'https://maven.fabric.io/public' }
+    maven { url "https://jitpack.io" }
+    maven { url "https://github.com/alter-ego/Android-RSS-Reader-Library/raw/master/releases/" }
+    google()
+}
+
+
 
 android {
     compileSdkVersion 28
-
+    buildToolsVersion '25.0.0'
 
     defaultConfig {
         applicationId "ch.bailu.aat"
@@ -15,11 +54,12 @@ android {
         minSdkVersion 14
         targetSdkVersion 28
 
-        versionCode 25
-        versionName "v1.14.1"
+        versionCode 1
+        versionName "1.0"
 
         resValue "string", "app_sname", "AAT"
     }
+
 
     buildTypes {
         release {
@@ -102,7 +142,9 @@ task findbugs(type: FindBugs) {
 
 
 }
-//Fine Findbugs task
+//per pitest
+
+//Fine Findbugs task*/
 
 dependencies {
     /*
@@ -124,6 +166,7 @@ dependencies {
     implementation "org.mapsforge:mapsforge-map-android:$mapsforgeVersion"
     implementation 'com.caverock:androidsvg:1.3'
 
+
     // Acra
     def acraVersion = '5.1.3'
     implementation "ch.acra:acra-mail:$acraVersion"
@@ -131,5 +174,29 @@ dependencies {
 
     // Local
     implementation project(path: ':util-java')
+    //prova massi
+    implementation fileTree(dir: 'libs' , include: ['*.jar'])
+    testImplementation "org.assertj:assertj-core:1.7.0"
 
+    // TESTING
+    testCompileOnly(
+            'junit:junit:4.12'
+    )
+    testImplementation(
+            'org.junit.jupiter:junit-jupiter-api:5.1.0'
+    )
+    testRuntimeOnly(
+            'org.junit.jupiter:junit-jupiter-engine:5.1.0',
+            'org.junit.vintage:junit-vintage-engine:5.1.0'
+    )
+    //testImplementation 'org.testng:testng:6.9.6'
+}
+pitest {
+
+    targetClasses = ['ch.bailu.aat.coordinates.*']
+    threads = 5
+    outputFormats = ['HTML']
+    timeoutConstInMillis = 20000
+    // Necessary to allow Robolectric to finish. See http://pitest.org/faq/#im-seeing-a-lot-of-timeouts-whats-going-on
+    verbose = true
 }

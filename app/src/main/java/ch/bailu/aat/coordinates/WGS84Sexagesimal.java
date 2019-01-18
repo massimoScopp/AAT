@@ -39,7 +39,9 @@ public class WGS84Sexagesimal extends Coordinates {
         }
     }
 
-    
+
+
+
     private final Sexagesimal longitude;
     private final Sexagesimal latitude;
     
