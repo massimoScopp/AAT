@@ -1,7 +1,5 @@
 # Getting started with the UI
 
-
-Antonella
 ## Main view
 When starting AAT the first time it shows the **main view**. That's basically a list of sub-views you can open. The first 3 entries are **"Copckpit A, Cockpit B, and Map"** if you have one of these open you can cycle through them with the down arrow. The right arrow switches trough the different pages of the view you are in.
 
