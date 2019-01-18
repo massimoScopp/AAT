@@ -13,37 +13,7 @@ android {
         resValue "string", "app_sname", "AAT"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
     }
-    task findbugs(type: FindBugs) {
-
-      classes = files("${project.rootDir}/app")
-        //build/intermediates/classes/
-                //files("${project.rootDir/app}")
-
-
-        classpath = files()
-        //classpath = files('C:/Users/Antonella/Downloads/FindBugs-IDEA-1.0.1.zip')
-        effort = "max"
-        excludeFilter = file("${project.rootDir}/findbugs-android-exclude.xml")
-        includeFilter = file("${project.rootDir}/findbugs-include")
-        ignoreFailures = true
-        //con false la build failed con true non failed anche se ci sono warnings
-        reportLevel = "low"
-        source = fileTree('src/main/java/')
-
-        reports {
-            xml.enabled = false
-            html.enabled = true
-            xml {
-                destination "build/reports/findbugs/findbugs-output.xml"
-            }
-            html {
-                destination "build/reports/findbugs/findbugs-output.html"
-            }
-        }
-    }
-
     buildTypes {
         release {
             minifyEnabled false
