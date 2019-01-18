@@ -80,7 +80,8 @@ public class UTMCoordinatesTest {
         assertEquals((int) la * 1000, (int) (p.getLatitudeE6() / 1e6) * 1000);
         assertEquals((int) lo * 1000, (int) (p.getLongitudeE6() / 1e6) * 1000);
         assertNotNull(utm4.toString(), "tostring non è nullo");
-        //assertEquals("Z 51T, E 444,563, N 5274,027",utm4.toString());
+        String str ="Z 51T, E 444,563, N 5274,027";
+        assertEquals(str,utm4.toString());
 
     }
 
