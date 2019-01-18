@@ -83,7 +83,8 @@ public class UTMCoordinatesTest {
         String str ="Z 51T, E 444,563, N 5274,027";
         String str2=utm4.toString();
         System.out.println(str+str2);
-        assertEquals(str,str2);
+        assertTrue(str.equalsIgnoreCase(str2));
+        //assertEquals(str,str2);
 
     }
 
