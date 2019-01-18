@@ -11,13 +11,19 @@ android {
         versionCode 25
         versionName "v1.14.1"
         resValue "string", "app_sname", "AAT"
+     //   testInstrumentationRunner = 'android.support.test.runner.AndroidJUnitRunner'
+
+        //testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner" instead of testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+      testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
     }
 
     task findbugs(type: FindBugs) {
 
-      classes = files("${project.rootDir}/app")
+        classes = files("${project.rootDir}/app")
         //build/intermediates/classes/
-                //files("${project.rootDir/app}")
+        //files("${project.rootDir/app}")
 
 
         classpath = files()
@@ -61,9 +67,9 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-
+}
     dependencies {
-        /*
+       /*
         Automatic MapsForge integration as described here: 
         https://github.com/mapsforge/mapsforge/raw/master/docs/Integration.md
     */
@@ -89,5 +95,30 @@ android {
 
         // Local
         implementation project(path: ':util-java')
+
+
+        // TESTING
+      testCompileOnly(
+           'junit:junit:4.12'
+      )
+     testImplementation(
+           'org.junit.jupiter:junit-jupiter-api:5.1.0'
+     )
+     testRuntimeOnly(
+            'org.junit.jupiter:junit-jupiter-engine:5.1.0',
+           'org.junit.vintage:junit-vintage-engine:5.1.0'
+      )
+
+
+
+        //provaEspresso
+        androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
+        androidTestImplementation 'androidx.test:runner:1.1.0'
+        androidTestImplementation 'androidx.test:rules:1.1.0'
+
+        //androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2', {
+        //    exclude group: 'com.android.support', module: 'support-annotations'
+      //  }
+     //   androidTestImplementation 'com.android.support.test:rules:1.0.2'
+
     }
-}
