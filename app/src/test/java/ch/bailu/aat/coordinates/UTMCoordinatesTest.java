@@ -82,7 +82,6 @@ public class UTMCoordinatesTest {
         assertNotNull(utm4.toString(), "tostring non è nullo");
         String str = "Z 51T, E 444,563, N 5274,027";
         assertEquals(str,utm4.toString());
-
     }
 
     @After
