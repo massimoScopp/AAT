@@ -7,8 +7,6 @@ AAT is a GPS-tracking application for tracking sportive activities, with emphasi
 
 
 
-grfge
-ciao
 
 ## Features
 * Display live tracking on different cockpit and map views.
