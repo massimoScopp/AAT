@@ -11,6 +11,9 @@ android {
         versionCode 25
         versionName "v1.14.1"
         resValue "string", "app_sname", "AAT"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
     }
 
     task findbugs(type: FindBugs) {
@@ -89,5 +92,10 @@ android {
 
         // Local
         implementation project(path: ':util-java')
+
+        androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
+        androidTestImplementation 'androidx.test:runner:1.1.0'
+        androidTestImplementation 'androidx.test:rules:1.1.0'
+
     }
 }
