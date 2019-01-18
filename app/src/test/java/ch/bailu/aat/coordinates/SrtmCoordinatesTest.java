@@ -1,12 +1,14 @@
 package ch.bailu.aat.coordinates;
 
-import org.junit.jupiter.api.AfterEach;
+import org.junit.After;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
 
-class SrtmCoordinatesTest {
+import static org.junit.Assert.*;
+
+
+public class SrtmCoordinatesTest {
 
     double la = 48.024089;
     double lo = 7.789636;
@@ -16,34 +18,34 @@ class SrtmCoordinatesTest {
     SrtmCoordinates sc1 = new SrtmCoordinates(la1,lo1);
 
 
-    @AfterEach
-    void tearDown() {
+    @After
+    public void tearDown() {
     }
 
     @Test
-    void toLaStringTest() {
+    public void toLaStringTest() {
         assertEquals("N48",sc.toLaString());
     }
 
     @Test
-    void toLoString() {
+    public void toLoString() {
         assertEquals("E007",sc.toLoString());}
 
 
     @Test
-    void toExtString() {
+    public void toExtString() {
         System.out.println(sc.toExtString());
         assertEquals("N48/N48E007",sc.toExtString());
     }
 
     @Test
-    void toURL() {
+    public void toURL() {
         assertNotNull(sc.toURL());
 
     }
 
     @Test
-    void toFile() {
+    public void toFile() {
 
     }
 

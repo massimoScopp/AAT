@@ -1,20 +1,21 @@
 package ch.bailu.aat.coordinates;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
-class CH1903CoordinatesTest {
 
-    @BeforeEach
-    void setUp() {
+public class CH1903CoordinatesTest {
+
+    @Before
+   public void setUp() {
         testCH1903();
     }
 
-    @AfterEach
-    void tearDown() {
+    @After
+    public void tearDown() {
     }
 
     @Test

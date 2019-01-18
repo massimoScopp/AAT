@@ -37,7 +37,7 @@ repositories {
 
 android {
     compileSdkVersion 28
-
+   // buildToolsVersion '25.0.0'//copi
 
     defaultConfig {
         applicationId "ch.bailu.aat"
@@ -45,8 +45,8 @@ android {
         minSdkVersion 14
         targetSdkVersion 28
 
-        versionCode 25
-        versionName "v1.14.1"
+        versionCode 1
+        versionName "1.0"
 
         resValue "string", "app_sname", "AAT"
     }
@@ -165,7 +165,15 @@ dependencies {
 
     // Local
     implementation project(path: ':util-java')
+//copi ---> inserito per trifork pitest
 
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    testImplementation 'junit:junit:4.12'
+    testImplementation "org.assertj:assertj-core:1.7.0"
+    //testCompile 'org.hamcrest:hamcrest-library:1.3'
+   // testCompile "org.robolectric:robolectric:3.1.2"
+    //compile 'com.android.support:appcompat-v7:25.2.0'
+    //fine ins trifork
 
 
     // TESTING
@@ -181,11 +189,11 @@ dependencies {
     )
 }
 pitest {
-   //targetClasses = ['ch.bailu.aat.*']
-  targetClasses = ['ch.bailu.aat.*']
-    targetTests = ['ch.bailu.aat.*Test']
+    //targetClasses = ['ch.bailu.aat.*']
+    targetClasses = ['ch.bailu.aat.coordinates.*']
+    //targetTests = ['ch.bailu.aat.*Test']
 
-
+    threads = 5
     outputFormats = ['HTML']
     timeoutConstInMillis = 20000
     // Necessary to allow Robolectric to finish. See http://pitest.org/faq/#im-seeing-a-lot-of-timeouts-whats-going-on
