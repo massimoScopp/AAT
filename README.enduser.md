@@ -13,6 +13,9 @@ Now once you have stopped the tracker go back to the **main view** with your pho
 There are different pages in the **Track list** view (Access them with < ... > ). This pages offer **a map as an alternative to the track list**, **summary information** and **filter options**.
 
 
+
+
+
 # Map Tiles
 AAT does not automatically remove downloaded map tiles. This is to...
 
