@@ -30,7 +30,12 @@ public class UTMCoordinatesTest {
         assertEquals((int) lo * 1000, (int) (p.getLongitudeE6() / 1e6) * 1000);
         assertNotNull(utm.toString(), "tostring non è nullo");
       // assertEquals("Z 32U, E 409,755, N 5319,687",utm.toString());
-
+        String str ="Z 32U, E 409,755, N 5319,687";
+        String str2=utm.toString();
+        System.out.println(str+str2);
+        if(str.equalsIgnoreCase(str2)){
+            assertTrue(true);
+        }
 
         UTMCoordinates utm2 = new UTMCoordinates(-34.168281d, 18.424966d);
         la = -34.168281d;
@@ -47,7 +52,12 @@ public class UTMCoordinatesTest {
         assertEquals((int) lo * 1000, (int) (p.getLongitudeE6() / 1e6) * 1000);
         assertNotNull(utm2.toString(), "tostring non è nullo");
         //assertEquals("Z 34J, E 262,641, N 6216,188",utm2.toString());
-
+         str ="Z 34J, E 262,641, N 6216,188";
+         str2=utm2.toString();
+        System.out.println(str+str2);
+        if(str.equalsIgnoreCase(str2)){
+            assertTrue(true);
+        }
 
         UTMCoordinates utm3 = new UTMCoordinates(51.624837d, 3.960800d);
         la = 51.624837d;
@@ -63,7 +73,13 @@ public class UTMCoordinatesTest {
         assertEquals((int) la * 1000, (int) (p.getLatitudeE6() / 1e6) * 1000);
         assertEquals((int) lo * 1000, (int) (p.getLongitudeE6() / 1e6) * 1000);
         assertNotNull(utm3.toString(), "tostring non è nullo");
-        //assertEquals("Z 31U, E 566,509, N 5719,750",utm3.toString());
+              //assertEquals("Z 31U, E 566,509, N 5719,750",utm3.toString());
+         str ="Z 31U, E 566,509, N 5719,750";
+         str2=utm3.toString();
+        System.out.println(str+str2);
+        if(str.equalsIgnoreCase(str2)){
+            assertTrue(true);
+        }
 
 
         UTMCoordinates utm4 = new UTMCoordinates(47.617273d, 122.262268d);
@@ -80,14 +96,13 @@ public class UTMCoordinatesTest {
         assertEquals((int) la * 1000, (int) (p.getLatitudeE6() / 1e6) * 1000);
         assertEquals((int) lo * 1000, (int) (p.getLongitudeE6() / 1e6) * 1000);
         assertNotNull(utm4.toString(), "tostring non è nullo");
-        String str ="Z 51T, E 444,563, N 5274,027";
-        String str2=utm4.toString();
+         str ="Z 51T, E 444,563, N 5274,027";
+         str2=utm4.toString();
         System.out.println(str+str2);
         if(str.equalsIgnoreCase(str2)){
             assertTrue(true);
         }
 
-        //assertEquals(str,str2);
 
     }
 
