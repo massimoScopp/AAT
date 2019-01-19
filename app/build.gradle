@@ -31,6 +31,47 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    lintOptions {
+        abortOnError false
+        lintConfig file("${project.rootDir}/app/config/lint/lintconf.xml")
+        htmlReport true
+        htmlOutput file("$project.buildDir/reports/lint/lint.html")
+    }
+}
+//findbugs
+task findbugs(type: FindBugs) {
+    classes = files("${project.rootDir}/app")
+    effort = "max"
+    excludeFilter = file("${project.rootDir}/findbugs-android-exclude.xml")
+    includeFilter = file("${project.rootDir}/findbugs-include")
+    ignoreFailures = true
+    //con false la build failed con true non failed anche se ci sono warnings
+    reportLevel = "low"
+    source = fileTree('src/main/java/')
+
+    // source 'src'
+    //    include '**/*.java'
+    //    exclude '**/gen/**'
+
+    classpath = files()
+    //classpath = files('C:/Users/Antonella/Downloads/FindBugs-IDEA-1.0.1.zip')
+
+//
+//
+    reports {
+        xml.enabled = false
+        html.enabled = true
+        xml {
+            destination "$project.buildDir/reports/findbugs/findbugs.xml"
+        }
+        html {
+            destination "$project.buildDir/reports/findbugs/findbugs.html"//            }
+        }
+    }
+}
+
+
+
 dependencies {
         /*
         Automatic MapsForge integration as described here: 
@@ -63,5 +104,5 @@ dependencies {
         androidTestImplementation 'androidx.test:runner:1.1.0'
         androidTestImplementation 'androidx.test:rules:1.1.0'
 
-    }
 }
+
