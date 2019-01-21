@@ -40,7 +40,7 @@ public class MainActivityTest_3 {
                     "android.permission.WRITE_EXTERNAL_STORAGE");
 
     @Test
-    public void mainActivityTest_6() {
+    public void mainActivityTest_3() {
         ViewInteraction view = onView(
                 allOf(childAtPosition(
                         childAtPosition(

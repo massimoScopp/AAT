@@ -41,7 +41,7 @@ public class MainActivityTest_7 {
                     "android.permission.WRITE_EXTERNAL_STORAGE");
 
     @Test
-    public void mainActivityTest_10() {
+    public void mainActivityTest_7() {
         ViewInteraction textView = onView(
                 allOf(childAtPosition(
                         childAtPosition(

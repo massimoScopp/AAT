@@ -43,7 +43,7 @@ public class ClickActivityTest1 {
                     "android.permission.WRITE_EXTERNAL_STORAGE");
 
     @Test
-    public void clickActivityTest_1() {
+    public void clickActivityTest1() {
         ViewInteraction solidIndexListView = onView(
                 allOf(childAtPosition(
                         childAtPosition(

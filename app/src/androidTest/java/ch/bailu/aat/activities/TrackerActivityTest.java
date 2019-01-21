@@ -44,7 +44,7 @@ public class TrackerActivityTest {
                     "android.permission.WRITE_EXTERNAL_STORAGE");
 
     @Test
-    public void mainActivityTest() {
+    public void TrackerActivityTest() {
         ViewInteraction presetDirectoryLabel = onView(
                 allOf(childAtPosition(
                         childAtPosition(

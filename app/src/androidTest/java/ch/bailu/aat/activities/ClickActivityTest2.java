@@ -45,7 +45,7 @@ public class ClickActivityTest2 {
                     "android.permission.WRITE_EXTERNAL_STORAGE");
 
     @Test
-    public void clickActivityTest3() {
+    public void clickActivityTest2() {
         ViewInteraction activityLabel = onView(
                 allOf(childAtPosition(
                         childAtPosition(
