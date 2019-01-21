@@ -1,8 +1,43 @@
 apply plugin: 'com.android.application'
+apply plugin: 'checkstyle'
+apply plugin: 'findbugs'
+apply plugin: 'pl.droidsonroids.pitest'
+
+//check.dependsOn('checkstyle','findbugs','lint')
+
+apply plugin: 'jacoco'
+
+
+buildscript {
+    repositories {
+        mavenCentral()
+        maven { url 'https://maven.fabric.io/public' }
+    }
+
+    dependencies {
+        classpath 'io.fabric.tools:gradle:1.25.4'
+
+    }
+}
+
+repositories {
+    mavenCentral()
+    jcenter()
+    maven {
+        url "https://oss.sonatype.org/content/repositories/snapshots"
+    }
+    maven { url 'https://maven.fabric.io/public' }
+    maven { url "https://jitpack.io" }
+    maven { url "https://github.com/alter-ego/Android-RSS-Reader-Library/raw/master/releases/" }
+    google()
+}
+
+
+
 
 android {
     compileSdkVersion 28
-
+    // buildToolsVersion '25.0.0'//copi
 
     defaultConfig {
         applicationId "ch.bailu.aat"
@@ -10,10 +45,11 @@ android {
         minSdkVersion 14
         targetSdkVersion 28
 
-        versionCode 25
-        versionName "v1.14.1"
+        versionCode 27
+        versionName "v.1.15.1"
 
         resValue "string", "app_sname", "AAT"
+        testInstrumentationRunner = 'android.support.test.runner.AndroidJUnitRunner'
     }
 
 
@@ -31,18 +67,82 @@ android {
     }
 
     compileOptions {
-            sourceCompatibility JavaVersion.VERSION_1_8
-            targetCompatibility JavaVersion.VERSION_1_8
-        }
-}
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 
+    lintOptions {
+        abortOnError false
+        lintConfig file("${project.rootDir}/app/config/lint/lintconf.xml")
+        htmlReport true
+        htmlOutput file("$project.buildDir/reports/lint/lint.html")
+    }
+}
+//Inserimento task per checkstyle
+task checkstyle(type: Checkstyle) {
+
+    configFile = rootProject.file('app/config/checkstyle/checkstyle.xml')
+    source 'src'
+    ignoreFailures = true
+    include '**/*.java'
+    exclude '**/gen/**'
+    exclude '**/R.java'
+    exclude '**/BuildConfig.java'
+
+    // empty classpath
+    classpath = files()
+
+    showViolations true
+
+    reports {
+        xml.enabled false
+        html.enabled true
+    }
+    //inserimento prebuild per far in modo che l'esecuzione del
+    // task avvenga per ogni build
+    preBuild.dependsOn('checkstyle')
+}
+//fine del task--> checkstyle
+//Inserimento secondo task per findbugs
+task findbugs(type: FindBugs) {
+
+    ignoreFailures = true
+    effort = "max"
+
+    reportLevel = "low"
+    excludeFilter = new File("${project.rootDir}/app/config/findbugs/rulesFindBugs.xml")
+    //classes = files("${project.rootDir}/app/build")
+    classes = files("$project.buildDir")
+
+    source 'src'
+    include '**/*.java'
+    exclude '**/gen/**'
+
+    reports {
+        xml.enabled = false
+        html.enabled = true
+        xml {
+            destination "$project.buildDir/reports/findbugs/findbugs.xml"
+        }
+        html {
+            destination "$project.buildDir/reports/findbugs/findbugs.html"
+        }
+    }
+
+
+    classpath = files()
+
+
+}
+//per pitest
+
+//Fine Findbugs task*/
 
 dependencies {
     /*
-        Automatic MapsForge integration as described here: 
+        Automatic MapsForge integration as described here:
         https://github.com/mapsforge/mapsforge/raw/master/docs/Integration.md
     */
-
 
     // MapsForge
     def mapsforgeVersion = '0.10.0'
@@ -58,7 +158,6 @@ dependencies {
     implementation "org.mapsforge:mapsforge-map-android:$mapsforgeVersion"
     implementation 'com.caverock:androidsvg:1.3'
 
-
     // Acra
     def acraVersion = '5.1.3'
     implementation "ch.acra:acra-mail:$acraVersion"
@@ -66,5 +165,37 @@ dependencies {
 
     // Local
     implementation project(path: ':util-java')
+//copi ---> inserito per trifork pitest
 
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    testImplementation 'junit:junit:4.12'
+    testImplementation "org.assertj:assertj-core:1.7.0"
+    //testCompile 'org.hamcrest:hamcrest-library:1.3'
+    // testCompile "org.robolectric:robolectric:3.1.2"
+    //compile 'com.android.support:appcompat-v7:25.2.0'
+    //fine ins trifork
+
+    // TESTING
+    testCompileOnly(
+            'junit:junit:4.12'
+    )
+    testImplementation(
+            'org.junit.jupiter:junit-jupiter-api:5.1.0'
+    )
+    testRuntimeOnly(
+            'org.junit.jupiter:junit-jupiter-engine:5.1.0',
+            'org.junit.vintage:junit-vintage-engine:5.1.0'
+    )
+
+}
+pitest {
+    //targetClasses = ['ch.bailu.aat.*']
+    targetClasses = ['ch.bailu.aat.coordinates.*']
+    //targetTests = ['ch.bailu.aat.*Test']
+
+    threads = 5
+    outputFormats = ['HTML']
+    timeoutConstInMillis = 20000
+
+    verbose = true
 }
