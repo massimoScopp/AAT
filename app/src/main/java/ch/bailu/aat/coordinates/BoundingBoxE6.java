@@ -49,7 +49,6 @@ public class BoundingBoxE6 {
 
     }
 
-
     public BoundingBoxE6(BoundingBoxE6 b) {
         add(b);
     }
@@ -158,7 +157,6 @@ public class BoundingBoxE6 {
                 LatLongE6.toD(Math.max(b.south, b.north)),
                 LatLongE6.toD(Math.max(b.west, b.east)));
     }
-
 
 
     public int getLatNorthE6() {

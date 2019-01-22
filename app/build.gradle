@@ -5,39 +5,9 @@ apply plugin: 'pl.droidsonroids.pitest'
 
 //check.dependsOn('checkstyle','findbugs','lint')
 
-apply plugin: 'jacoco'
-
-
-buildscript {
-    repositories {
-        mavenCentral()
-        maven { url 'https://maven.fabric.io/public' }
-    }
-
-    dependencies {
-        classpath 'io.fabric.tools:gradle:1.25.4'
-
-    }
-}
-
-repositories {
-    mavenCentral()
-    jcenter()
-    maven {
-        url "https://oss.sonatype.org/content/repositories/snapshots"
-    }
-    maven { url 'https://maven.fabric.io/public' }
-    maven { url "https://jitpack.io" }
-    maven { url "https://github.com/alter-ego/Android-RSS-Reader-Library/raw/master/releases/" }
-    google()
-}
-
-
-
-
 android {
     compileSdkVersion 28
-    // buildToolsVersion '25.0.0'//copi
+
 
     defaultConfig {
         applicationId "ch.bailu.aat"
@@ -45,14 +15,14 @@ android {
         minSdkVersion 14
         targetSdkVersion 28
 
-        versionCode 27
-        versionName "v.1.15.1"
+        versionCode 25
+        versionName "v1.14.1"
 
         resValue "string", "app_sname", "AAT"
-        testInstrumentationRunner = 'android.support.test.runner.AndroidJUnitRunner'
+
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-
-
     buildTypes {
         release {
             minifyEnabled false
@@ -171,10 +141,14 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     testImplementation "org.assertj:assertj-core:1.7.0"
     //testCompile 'org.hamcrest:hamcrest-library:1.3'
-    // testCompile "org.robolectric:robolectric:3.1.2"
+   // testCompile "org.robolectric:robolectric:3.1.2"
     //compile 'com.android.support:appcompat-v7:25.2.0'
     //fine ins trifork
 
+
+        androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
+        androidTestImplementation 'androidx.test:runner:1.1.0'
+        androidTestImplementation 'androidx.test:rules:1.1.0'
     // TESTING
     testCompileOnly(
             'junit:junit:4.12'
@@ -186,16 +160,15 @@ dependencies {
             'org.junit.jupiter:junit-jupiter-engine:5.1.0',
             'org.junit.vintage:junit-vintage-engine:5.1.0'
     )
-
 }
 pitest {
-    //targetClasses = ['ch.bailu.aat.*']
-    targetClasses = ['ch.bailu.aat.coordinates.*']
-    //targetTests = ['ch.bailu.aat.*Test']
+   //targetClasses = ['ch.bailu.aat.*']
+  targetClasses = ['ch.bailu.aat.*']
+    targetTests = ['ch.bailu.aat.*Test']
 
-    threads = 5
+
     outputFormats = ['HTML']
     timeoutConstInMillis = 20000
-
+    // Necessary to allow Robolectric to finish. See http://pitest.org/faq/#im-seeing-a-lot-of-timeouts-whats-going-on
     verbose = true
 }

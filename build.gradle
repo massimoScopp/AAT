@@ -20,6 +20,7 @@ buildscript {
     }
 }
 
+
 allprojects {
     repositories {
         google() // for com.android.tools.build:gradle'
@@ -33,5 +34,3 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
-
-
