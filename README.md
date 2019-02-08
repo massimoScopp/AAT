@@ -6,10 +6,6 @@ AAT is a GPS-tracking application for tracking sportive activities, with emphasi
 ciao
 
 
-
-
-ciao
-
 ## Features
 * Display live tracking on different cockpit and map views.
 * Store tracks in [standard GPX format](https://www.topografix.com/gpx.asp) for sharing with other applications.
