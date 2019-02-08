@@ -32,6 +32,8 @@ android {
         debug {
             resValue "string", "app_sname", "AAT.debug"
             applicationIdSuffix = ".debug"
+
+            testCoverageEnabled = true
         }
 
     }
@@ -76,17 +78,15 @@ task checkstyle(type: Checkstyle) {
 //Inserimento secondo task per findbugs
 task findbugs(type: FindBugs) {
 
-    ignoreFailures = true
+    classes = files("${project.rootDir}/app")
     effort = "max"
-
     reportLevel = "low"
-    excludeFilter = new File("${project.rootDir}/app/config/findbugs/rulesFindBugs.xml")
-    //classes = files("${project.rootDir}/app/build")
-    classes = files("$project.buildDir")
+    includeFilter = file("${project.rootDir}/app/config/findbugs/findbugs-include.xml")
+    ignoreFailures = true
 
-    source 'src'
-    include '**/*.java'
-    exclude '**/gen/**'
+    source = fileTree('src/main/java/')
+
+    classpath = files()
 
     reports {
         xml.enabled = false
@@ -99,10 +99,7 @@ task findbugs(type: FindBugs) {
         }
     }
 
-
-    classpath = files()
-
-
+    preBuild.dependsOn('findbugs')
 }
 //per pitest
 
