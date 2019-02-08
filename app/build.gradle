@@ -78,8 +78,7 @@ task checkstyle(type: Checkstyle) {
 //Inserimento secondo task per findbugs
 task findbugs(type: FindBugs) {
 
-   // classes = files("${project.rootDir}/app")
-    classes = files("${project.projectDir}/build/intermediates/javac")
+   classes = files("${project.rootDir}/app")
     effort = "max"
     reportLevel = "low"
     includeFilter = file("${project.rootDir}/app/config/findbugs/findbugs-include.xml")
