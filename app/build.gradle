@@ -78,7 +78,8 @@ task checkstyle(type: Checkstyle) {
 //Inserimento secondo task per findbugs
 task findbugs(type: FindBugs) {
 
-    classes = files("${project.rootDir}/app")
+   // classes = files("${project.rootDir}/app")
+    classes = files("${project.projectDir}/build/intermediates/javac")
     effort = "max"
     reportLevel = "low"
     includeFilter = file("${project.rootDir}/app/config/findbugs/findbugs-include.xml")
@@ -98,8 +99,6 @@ task findbugs(type: FindBugs) {
             destination "$project.buildDir/reports/findbugs/findbugs.html"
         }
     }
-
-    preBuild.dependsOn('findbugs')
 }
 //per pitest
 
